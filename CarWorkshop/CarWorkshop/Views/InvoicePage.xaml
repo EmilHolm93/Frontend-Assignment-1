@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CarWorkshop.Views.InvoicePage">
+    
+    <VerticalStackLayout Padding="20" Spacing="15">
+
+        <Label Text="Fakturering:" FontSize="18" />
+        <Picker Title="Vælg Ordre" 
+                ItemsSource="{Binding Workorders}" 
+                SelectedItem="{Binding SelectedWorkorder}" 
+                ItemDisplayBinding="{Binding CarReg}" />
+       <!-- Materialeliste med dynamisk tilføjelse -->
+        <Label Text="Materialer" FontAttributes="Bold"/>
+
+        <CollectionView ItemsSource="{Binding MaterialList}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid ColumnDefinitions="*, *, Auto" RowDefinitions="Auto">
+                        <!-- Materiale input -->
+                        <Entry Placeholder="Materiale" 
+                               Text="{Binding MaterialName, Mode=TwoWay}" 
+                               Grid.Column="0"/>
+                        
+                        <!-- Pris input -->
+                        <Entry Placeholder="Pris" Keyboard="Numeric"
+                               Text="{Binding MaterialPrice, Mode=TwoWay}" 
+                               Grid.Column="1"/>
+                        
+                        <!-- Slet-knap -->
+                        <Button Text="❌" 
+                                Command="{Binding Source={x:Reference InvoicePage}, Path=BindingContext.RemoveMaterialCommand}"
+                                CommandParameter="{Binding}" Grid.Column="2" 
+                                BackgroundColor="Transparent"/>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <!-- Knap til at tilføje nyt materiale -->
+        <Button Text="➕ Tilføj materiale" Command="{Binding AddMaterialCommand}"/>
+
+        <!-- Arbejdstimer & Timepris -->
+        <Label Text="Arbejdstimer og Timepris" FontAttributes="Bold"/>
+        <Grid ColumnDefinitions="*, *" RowDefinitions="Auto">
+            <Entry Placeholder="Arbejdstimer" Keyboard="Numeric" Text="{Binding Hours}" Grid.Column="0"/>
+            <Entry Placeholder="Timepris" Keyboard="Numeric" Text="{Binding HourPrice}" Grid.Column="1"/>
+        </Grid>
+
+        <Entry Placeholder="MekanikerNavn" Text ="{Binding MechanicName}"/>
+
+        <!-- Gem faktura knap -->
+        <Button Text="Gem faktura" Command="{Binding SaveInvoiceCommand}"/>
+
+    </VerticalStackLayout>
+</ContentPage>

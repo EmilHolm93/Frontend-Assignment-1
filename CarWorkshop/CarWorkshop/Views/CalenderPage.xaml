@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CarWorkshop.Views.CalenderPage"
+             Title="Calendar">
+    <VerticalStackLayout Padding="20" Spacing="15">
+        <DatePicker x:Name="datePicker" Date="{Binding SelectedDate, Mode=TwoWay}" Style="{StaticResource DatePickerStyle}" HorizontalOptions="Start"/>
+        <Button Text="Hent opgaver" Command="{Binding LoadWorkordersCommand}" IsEnabled="True" Style="{StaticResource ButtonStyle}" HorizontalOptions="Start"/>
+        <ListView ItemsSource="{Binding Workorders}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Vertical" Padding="5">
+                            <Label Text="{Binding Name}" FontSize="18" FontAttributes="Bold"/>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="Registreringsnummer:" Style="{StaticResource LabelStyle}" FontAttributes="Bold"/>
+                                <Label Text="{Binding CarReg}" FontSize="14"/>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="Adresse: " Style="{StaticResource LabelStyle}"/>
+                                <Label Text="{Binding Address}" FontSize="14"/>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="Make: " Style="{StaticResource LabelStyle}"/>
+                                <Label Text="{Binding CarBrand}" FontSize="14"/>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="Model: " Style="{StaticResource LabelStyle}"/>
+                                <Label Text="{Binding CarModel}" FontSize="14" />
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="Der skal laves: " Style="{StaticResource LabelStyle}"/>
+                                <Label Text="{Binding Description}" FontSize="14"/>
+                            </StackLayout>
+
+                            </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+</VerticalStackLayout>
+</ContentPage>

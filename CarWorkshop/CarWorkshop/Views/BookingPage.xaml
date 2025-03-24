@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:CarWorkshop.Viewmodels"
+             x:Class="CarWorkshop.Views.BookingPage"
+             >
+
+    <VerticalStackLayout Padding="20" Spacing="15">
+        <Entry Placeholder="Kundens navn" Text="{Binding Name}" Style="{StaticResource EntryStyle}" HorizontalOptions="Start"/>
+        <Entry Placeholder="Adresse" Text="{Binding Address}" Style="{StaticResource EntryStyle}" HorizontalOptions="Start"/>
+        <Entry Placeholder="Bilmærke" Text="{Binding CarBrand}" Style="{StaticResource EntryStyle}" HorizontalOptions="Start"/>
+        <Entry Placeholder="Model" Text="{Binding CarModel}" Style="{StaticResource EntryStyle}" HorizontalOptions="Start"/>
+        <Entry Placeholder="Reg. nummer" Text="{Binding CarReg}" Style="{StaticResource EntryStyle}" HorizontalOptions="Start"/>
+        <Editor Placeholder="Hvad skal laves?" Text="{Binding Description}" Style="{StaticResource EditorStyle}" HorizontalOptions="Start"/>
+        <DatePicker Date="{Binding HandinDate, Mode=TwoWay}" Style="{StaticResource DatePickerStyle}" HorizontalOptions="Start"/>
+        <TimePicker Time="{Binding SelectedTime }" Style="{StaticResource TimePickerStyle}" HorizontalOptions="Start"/>
+        <Button Text="Gem opgave" Command="{Binding AddWorkorderCommand}" Style="{StaticResource ButtonStyle}" HorizontalOptions="Start"/>
+</VerticalStackLayout>
+</ContentPage>
